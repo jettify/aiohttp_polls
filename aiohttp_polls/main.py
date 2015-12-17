@@ -16,8 +16,12 @@ TEMPLATES_ROOT = pathlib.Path(__file__).parent / 'templates'
 def setup_routes(app, handler):
     add_route = app.router.add_route
     add_route('GET', '/', handler.index)
+    add_route('GET', '/poll/{poll_id}', handler.poll, name='poll')
+    add_route('GET', '/poll/{poll_id}/results', handler.results)
+    add_route('POST', '/poll/{poll_id}/vote', handler.vote)
     app.router.add_static('/static/',
-                          path=str(PROJ_ROOT / 'static'))
+                          path=str(PROJ_ROOT / 'static'),
+                          name='static')
 
 
 async def init(loop):
@@ -25,11 +29,9 @@ async def init(loop):
     aiohttp_jinja2.setup(
         app, loader=jinja2.FileSystemLoader(str(TEMPLATES_ROOT)))
     conf = load_config(str(PROJ_ROOT / 'config' / 'polls.yaml'))
-    import ipdb
-    ipdb.set_trace()
-    app['pg'] = await init_postgres(conf['postgres'], loop)
+    pg = await init_postgres(conf['postgres'], loop)
 
-    handler = SiteHandler()
+    handler = SiteHandler(pg)
     setup_routes(app, handler)
     app_handler = app.make_handler()
     srv = await loop.create_server(app_handler, '127.0.0.1', 8080)
