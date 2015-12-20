@@ -16,9 +16,10 @@ TEMPLATES_ROOT = pathlib.Path(__file__).parent / 'templates'
 def setup_routes(app, handler):
     add_route = app.router.add_route
     add_route('GET', '/', handler.index)
-    add_route('GET', '/poll/{poll_id}', handler.poll, name='poll')
-    add_route('GET', '/poll/{poll_id}/results', handler.results)
-    add_route('POST', '/poll/{poll_id}/vote', handler.vote)
+    add_route('GET', '/poll/{question_id}', handler.poll, name='poll')
+    add_route('GET', '/poll/{question_id}/results',
+              handler.results, name='results')
+    add_route('POST', '/poll/{question_id}/vote', handler.vote, name='vote')
     app.router.add_static('/static/',
                           path=str(PROJ_ROOT / 'static'),
                           name='static')
