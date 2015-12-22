@@ -35,7 +35,7 @@ Open browser
 ::
     http://localhost:8080/
 
-.. image:: https://raw.githubusercontent.com/andriisoldatenko/aiohttp_polls/master/example.png
+.. image:: https://raw.githubusercontent.com/andriisoldatenko/aiohttp_polls/master/images/example.png
     :width: 679
     :height: 781
     :align: center
