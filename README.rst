@@ -30,6 +30,17 @@ Run application
 ::
     $ python aiohttp_polls/main.py
 
+
+Open browser
+::
+    http://localhost:8080/
+
+.. image:: https://raw.githubusercontent.com/andriisoldatenko/aiohttp_polls/master/example.png
+    :width: 679
+    :height: 781
+    :align: center
+
+
 Requirements
 ============
 * aiohttp_
