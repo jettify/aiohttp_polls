@@ -15,9 +15,16 @@ Clone and install this app:
 Create database for your project:
 ::
 
-    sudo -u postgres psql -c "CREATE USER aiohttp_user WITH PASSWORD 'aiohttp_user';"
-    sudo -u postgres psql -c "CREATE DATABASE aiohttp_polls ENCODING 'UTF8';"
-    sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE aiohttp_polls TO aiohttp_user;"
+    sudo -u postgres psql -c "CREATE USER aiohttp_user WITH PASSWORD 'aiohttp_user';" \
+                             "CREATE DATABASE aiohttp_polls ENCODING 'UTF8';" \
+                             "GRANT ALL PRIVILEGES ON DATABASE aiohttp_polls TO aiohttp_user;"
+
+
+Create tables for your project:
+::
+    sudo -u postgres psql -d aiohttp_polls -a -f sql/create_tables.sql
+    sudo -u postgres psql -d aiohttp_polls -a -f sql/sample_data.sql
+
 
 Run application
 ::
