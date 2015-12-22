@@ -21,7 +21,7 @@ install_requires = ['aiohttp>=0.19.0',
                     'aiopg[sa]',
                     'jinja2',
                     'aiohttp_jinja2',
-                    'yaml']
+                    'pyyaml']
 
 
 setup(name='aiohttp_polls',
