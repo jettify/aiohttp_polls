@@ -9,7 +9,7 @@ meta = sa.MetaData()
 question = sa.Table(
     'question', meta,
     sa.Column('id', sa.Integer, nullable=False),
-    sa.Column('question', sa.String(200), nullable=False),
+    sa.Column('question_text', sa.String(200), nullable=False),
     sa.Column('pub_date', sa.Date, nullable=False),
 
     # Indexes #
