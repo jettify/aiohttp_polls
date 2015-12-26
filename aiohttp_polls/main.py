@@ -36,8 +36,10 @@ async def init(loop):
     handler = SiteHandler(pg)
     setup_routes(app, handler)
     app_handler = app.make_handler()
-    srv = await loop.create_server(app_handler, '127.0.0.1', 8080)
-    print("Server started at http://127.0.0.1:8080")
+
+    host, port = conf['host'], conf['port']
+    srv = await loop.create_server(app_handler, host, port)
+    print("Server started at http://{0}:{1}".format(host, port))
     return srv, app_handler
 
 
