@@ -6,7 +6,7 @@ import aiohttp_jinja2
 import jinja2
 from aiohttp import web
 
-from aiohttp_polls.site import SiteHandler
+from aiohttp_polls.views import SiteHandler
 from aiohttp_polls.utils import init_postgres, load_config
 
 
