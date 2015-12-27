@@ -49,7 +49,6 @@ class SiteHandler:
             'question': question,
             'choices': choices
         }
-        return web.Response(body=b'Body Response')
 
     async def vote(self, request):
         question_id = int(request.match_info['question_id'])
