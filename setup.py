@@ -14,7 +14,8 @@ def read_version():
             if match is not None:
                 return match.group(1)
         else:
-            raise RuntimeError('Cannot find version in aiohttp_polls/__init__.py')
+            msg = 'Cannot find version in aiohttp_polls/__init__.py'
+            raise RuntimeError(msg)
 
 
 install_requires = ['aiohttp>=0.19.0',
