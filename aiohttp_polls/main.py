@@ -6,9 +6,9 @@ import aiohttp_jinja2
 import jinja2
 from aiohttp import web
 
-from aiohttp_polls.views import SiteHandler
-from aiohttp_polls.utils import init_postgres, load_config
 from aiohttp_polls.routes import setup_routes
+from aiohttp_polls.utils import init_postgres, load_config
+from aiohttp_polls.views import SiteHandler
 
 
 PROJ_ROOT = pathlib.Path(__file__).parent.parent
@@ -16,16 +16,19 @@ TEMPLATES_ROOT = pathlib.Path(__file__).parent / 'templates'
 
 
 async def init(loop):
+    # setup application and extensions
     app = web.Application(loop=loop)
     aiohttp_jinja2.setup(
         app, loader=jinja2.FileSystemLoader(str(TEMPLATES_ROOT)))
+    # load config from yaml file
     conf = load_config(str(PROJ_ROOT / 'config' / 'polls.yaml'))
+    # create connection to the database
     pg = await init_postgres(conf['postgres'], loop)
-
+    # setup views and routes
     handler = SiteHandler(pg)
     setup_routes(app, handler, PROJ_ROOT)
-    app_handler = app.make_handler()
 
+    app_handler = app.make_handler()
     host, port = conf['host'], conf['port']
     srv = await loop.create_server(app_handler, host, port)
     print("Server started at http://{0}:{1}".format(host, port))

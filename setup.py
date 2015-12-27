@@ -20,7 +20,6 @@ def read_version():
 
 install_requires = ['aiohttp>=0.19.0',
                     'aiopg[sa]',
-                    'jinja2',
                     'aiohttp_jinja2',
                     'pyyaml']
 
