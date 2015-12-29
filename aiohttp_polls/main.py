@@ -1,5 +1,5 @@
-
 import asyncio
+import logging
 import pathlib
 
 import aiohttp_jinja2
@@ -13,6 +13,7 @@ from aiohttp_polls.views import SiteHandler
 
 PROJ_ROOT = pathlib.Path(__file__).parent.parent
 TEMPLATES_ROOT = pathlib.Path(__file__).parent / 'templates'
+log = logging.getLogger(__name__)
 
 
 async def init(loop):
@@ -28,7 +29,9 @@ async def init(loop):
     handler = SiteHandler(pg)
     setup_routes(app, handler, PROJ_ROOT)
 
-    app_handler = app.make_handler()
+    # init logging and attach access_log
+    logging.basicConfig(level=logging.DEBUG)
+    app_handler = app.make_handler(access_log=log)
     host, port = conf['host'], conf['port']
     srv = await loop.create_server(app_handler, host, port)
     print("Server started at http://{0}:{1}".format(host, port))
