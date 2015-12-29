@@ -18,7 +18,7 @@ def read_version():
             raise RuntimeError(msg)
 
 
-install_requires = ['aiohttp>=0.19.0',
+install_requires = ['aiohttp>=0.20.0',
                     'aiopg[sa]',
                     'aiohttp_jinja2',
                     'pyyaml']
