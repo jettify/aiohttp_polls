@@ -40,6 +40,8 @@ htmlcov/
 nosetests.xml
 coverage.xml
 cover
+# ctags
+tags
 
 # Translations
 *.mo
