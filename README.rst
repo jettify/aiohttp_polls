@@ -1,5 +1,5 @@
-aiohttp_polls
-=============
+aiohttp_polls (Demo moved to aiohttp repository)
+================================================
 
 Example of polls project using aiohttp_, aiopg_ and aiohttp_jinja2_, similar to django one.
 
